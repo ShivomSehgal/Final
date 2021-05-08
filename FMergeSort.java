@@ -1,4 +1,8 @@
 import java.util.*;
+/*
+Time Complexity-O(n2)
+Space Complexity-O(1)
+*/
 
 class FMergeSort {
   public static int[] mergeSort(int[] array) {
