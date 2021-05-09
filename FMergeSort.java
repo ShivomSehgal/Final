@@ -1,6 +1,6 @@
 import java.util.*;
 /*
-Time Complexity-O(n2)
+Time Complexity-O(nlogn)
 Space Complexity-O(n)
 */
 
