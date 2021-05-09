@@ -1,7 +1,7 @@
 import java.util.*;
 /*
 Time Complexity-O(n2)
-Space Complexity-O(1)
+Space Complexity-O(n)
 */
 
 class FMergeSort {
