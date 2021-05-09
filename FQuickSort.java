@@ -1,7 +1,7 @@
 import java.util.*;
 /*
-Time Complexity- O(nlogn)
-Space Complexity-O(n)
+Time Complexity- O(n2)
+Space Complexity-O(nlogn)
 */
 class Program {
   public static int[] quickSort(int[] array) {
