@@ -18,7 +18,7 @@ class Program {
 					
 				}else if(array[j] <= array[i] && (prevVal < array[j])){
 					maxHere += array[j];
-					seq.add(0,j);
+					
 					prevVal=array[j];
 										
 				}
