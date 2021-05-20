@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Program {
- 
+  
   public static class LinkedList {
     public int value;
     public LinkedList next;
@@ -12,45 +12,65 @@ class Program {
     }
   }
 
-  public LinkedList zipLinkedList(LinkedList head) {
-    if(head.next == null || head.next.next==null){
-			return head;
+  public LinkedList zipLinkedList(LinkedList linkedList) {
+    if(linkedList.next== null || linkedList.next.next==null){
+			return linkedList;
 		}
 		
-		int lengthOfLinkedList=1, counter=1;
-		LinkedList currentNode=head;
-		while(currentNode.next != null){
-			lengthOfLinkedList++;
-			currentNode=currentNode.next;
-		}
-		LinkedList firstHalf=head;
-		LinkedList current=head;
-		LinkedList secondHalf=null;
+		LinkedList firstHalf= linkedList;
+		LinkedList secondHalf=splitLinkedList(linkedList);
 		
-		while(counter != (lengthOfLinkedList/2)+1){
-			counter++;
-			current=current.next;
-		}
-		while (current !=null){
-			LinkedList next=current.next;
-			current.next=secondHalf;
-			secondHalf=current;
-			current=next;
-    }
-		LinkedList firstLL=firstHalf;
-		LinkedList secondLL=secondHalf;
+		LinkedList reversedSecondHalf=reverseLinkedList(secondHalf);
+		
+	  return interweaveLinkedList(firstHalf, reversedSecondHalf);
+  }
 	
-	while(firstLL != null && secondLL != null){
-		LinkedList firstNext=firstLL.next;
-		 LinkedList secondNext=secondLL.next;
+	
+	public static LinkedList splitLinkedList(LinkedList head){
+		LinkedList firstNode=head;
+		LinkedList secondNode=head;
 		
-		firstLL.next=secondLL;
-		secondLL.next=firstNext;
-		
-		firstLL =  firstNext;
-		secondLL = secondNext;
+		while(secondNode != null && secondNode.next != null){
+			firstNode=firstNode.next;
+			secondNode=secondNode.next.next;
+			}
+		LinkedList current=firstNode.next;
+		firstNode.next=null;
+		return current;
 	}
+	
+	public static LinkedList interweaveLinkedList(LinkedList first, LinkedList second){
+		LinkedList headOne=first;
+		LinkedList headTwo=second;
 		
-		return firstHalf;
+		while(headOne != null && headTwo != null){
+			LinkedList nextOne=headOne.next;
+			LinkedList nextTwo=headTwo.next;
+			
+			headOne.next=headTwo;
+			headTwo.next=nextOne;
+			
+			headOne=nextOne;
+			headTwo=nextTwo;
+		}
+		
+		return first;
+	}
+	
+	public static LinkedList reverseLinkedList(LinkedList head){
+		LinkedList currentNode=head;
+		LinkedList reversedLL=null;
+		
+		while(currentNode != null){
+			LinkedList nextNode=currentNode.next;
+			currentNode.next=reversedLL;
+			reversedLL=currentNode;
+			currentNode=nextNode;
+		}
+		return reversedLL;		
+	}
+	
 }
-}
+
+
+
