@@ -1,5 +1,9 @@
 import java.util.*;
 
+/*
+O(nm*min(n,m))- Space and Time Complexity
+*/
+
 class Program {
   public static List<Character> longestCommonSubsequence(String str1, String str2) {
     
