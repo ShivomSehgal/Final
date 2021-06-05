@@ -2,6 +2,48 @@ import java.util.*;
 
 class Program {
   public static List<List<Integer>> maxSumIncreasingSubsequence(int[] array) {
+    int[] seq=new int[array.length];
+		Arrays.fill(seq,Integer.MIN_VALUE);
+		int[] sum=array.clone();
+		int maxSumIdx=0;
+		for(int i=0;i<array.length;i++){
+			int currentNum=array[i];
+			for(int j=0;j<i;j++){
+				int otherNum=array[j];
+				if(currentNum > otherNum && currentNum + sum[j] >= sum[i]){
+					sum[i]=currentNum + sum[j];
+					seq[i]=j;
+				}
+			}
+			if(sum[i] > sum[maxSumIdx]){
+				maxSumIdx=i;
+			}
+		}
+    return  buildSequence(array,seq,maxSumIdx,sum[maxSumIdx]);
+  }
+	
+	public static List<List<Integer>> buildSequence(int[] array, int[] seq, int currentIdx, int sum){
+		List<List<Integer>> sequence=new ArrayList<>();
+		sequence.add(new ArrayList<>());
+		sequence.add(new ArrayList<>());
+		sequence.get(0).add(sum);
+		
+		while(currentIdx != Integer.MIN_VALUE){
+			sequence.get(1).add(0,array[currentIdx]);
+			currentIdx=seq[currentIdx];
+		}
+		return sequence;
+	}
+}
+
+
+
+
+// SELF
+import java.util.*;
+
+class Program {
+  public static List<List<Integer>> maxSumIncreasingSubsequence(int[] array) {
     int[] dynamic=new int[array.length];
     List<List<Integer>> finalList=new ArrayList<>();
 		List<Integer> seq= new ArrayList<>();
