@@ -1,5 +1,5 @@
 import java.util.*;
-O(n) || O()
+O(n) || O(n)
 class Program {
   public static BST minHeightBst(List<Integer> array) {
      return minHeightBst(array,0,array.size()-1);
