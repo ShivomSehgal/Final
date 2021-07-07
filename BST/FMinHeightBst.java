@@ -1,26 +1,22 @@
 import java.util.*;
-
+O(n) || O()
 class Program {
   public static BST minHeightBst(List<Integer> array) {
-    return minHeightBst(array,null,0,array.size()-1);
+     return minHeightBst(array,0,array.size()-1);
   }
 	
-	public static BST minHeightBst(List<Integer> array, BST bst,int startIdx, int endIdx){
-		if(endIdx < startIdx) return null;
-		int midIdx=(startIdx + endIdx)/2;
-		int valueToAdd=array.get(midIdx);
-		if(bst==null){
-			bst=new BST(valueToAdd);
-		}else{
-			bst.insert(valueToAdd);
+	public static BST minHeightBst(List<Integer> array, int start, int end){
+		if(end < start){
+			return null;
 		}
-		minHeightBst(array,bst,startIdx,midIdx-1);
-		minHeightBst(array,bst,midIdx+1,endIdx);
+		int mid=(start + end)/2;
+		BST bst=new BST(array.get(mid));
+		
+		bst.left=minHeightBst(array,start,mid-1);
+		bst.right=minHeightBst(array,mid+1,end);
 		return bst;
 	}
-	
-	
-	
+
   static class BST {
     public int value;
     public BST left;
@@ -30,9 +26,9 @@ class Program {
       this.value = value;
       left = null;
       right = null;
-    }     
-  
-	public void insert(int value) {
+    }
+
+    public void insert(int value) {
       if (value < this.value) {
         if (left == null) {
           left = new BST(value);
@@ -47,5 +43,5 @@ class Program {
         }
       }
     }
-}
+  }
 }
